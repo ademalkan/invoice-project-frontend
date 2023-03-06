@@ -45,7 +45,7 @@ function FilterMenu() {
         />
       </button>
       {menuOpen && (
-        <div className="absolute   rounded-xl shadow-xl top-10  p-5 w-44 flex flex-col items-start justify-center">
+        <div className="absolute  bg-light rounded-xl shadow-xl top-10  p-5 w-44 flex flex-col items-start justify-center">
           <label className="mb-2 flex items-center justify-center">
             <input
               type="checkbox"

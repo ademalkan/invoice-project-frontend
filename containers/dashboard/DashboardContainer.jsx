@@ -1,12 +1,14 @@
 import Blank from "@/components/blank/Blank";
+import BlankShow from "@/components/blank/BlankShow";
 import Sidebar from "@/components/Sidebar/Sidebar";
 import React from "react";
 
-function DashboardContainer() {
+function DashboardContainer({ invoiceData }) {
   return (
-    <div className="flex relative">
+    <div className="flex relative ">
       <Sidebar />
-      <Blank />
+      {!invoiceData && <Blank />}
+      {invoiceData && <BlankShow invoiceData={invoiceData} />}
     </div>
   );
 }
