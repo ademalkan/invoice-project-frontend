@@ -10,13 +10,13 @@ function Dashboard() {
     const token = getToken();
     console.log(token)
     if (!token) {
-      router.push('/login');
+      router.push('/');
     }
   }, [router]);
 
   function handleLogout() {
     removeToken()
-    router.push('/login');
+    router.push('/');
   }
   return (
     <DashboardContainer/>

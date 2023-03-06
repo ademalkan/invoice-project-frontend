@@ -9,10 +9,10 @@ function Sidebar() {
     router.push("/invoice/dashboard");
   };
   return (
-    <div className="bg-dark-open z-40 flex items-center justify-between flex-col rounded-tr-3xl rounded-br-3xl w-28 h-screen">
+    <div className="bg-dark-open fixed z-40 flex items-center justify-between flex-col rounded-tr-3xl rounded-br-3xl w-28 h-screen">
       <div
         onClick={handleClick}
-        className="bg-purple-open w-full h-1/6 flex items-center rounded-tr-3xl rounded-br-3xl text-center justify-center"
+        className="bg-purple-open hover:cursor-pointer w-full h-1/6 flex items-center rounded-tr-3xl rounded-br-3xl text-center justify-center"
       >
         <Image
           src="/starter-code/assets/logo.svg"
@@ -28,7 +28,7 @@ function Sidebar() {
             alt="Loog"
             width={25}
             height={25}
-            resizeMode="cover"
+            resizemode="cover"
           />
         </div>
         <div className="w-full  h-1/2 flex items-center rounded-tr-3xl rounded-br-3xl text-center justify-center">
@@ -37,7 +37,7 @@ function Sidebar() {
             alt="Loog"
             width={40}
             height={40}
-            resizeMode="cover"
+            resizemode="cover"
             className="rounded-full"
           />
         </div>

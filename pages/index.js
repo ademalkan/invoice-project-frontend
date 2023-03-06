@@ -1,25 +1,12 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
-import path from 'path'
-import fs from 'fs'
+import AuthForm from '@/components/auth/authForm'
 const inter = Inter({ subsets: ['latin'] })
 
 
-export async function getStaticProps() {
-  const filePath = path.join(process.cwd(), 'utils/mocks', 'productsData.json')
-  const fileContents = fs.readFileSync(filePath, 'utf8')
-  const data = JSON.parse(fileContents)
 
-  return {
-    props: {
-      data,
-    },
-  }
-}
-
-export default function Home({ data }) {
+export default function Home() {
   return (
     <>
       <Head>
@@ -28,11 +15,8 @@ export default function Home({ data }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.main}>
-        {data.map((item,key) => {
-          return item.title
-        })}
-      <pre>{JSON.stringify(data, null, 2)}</pre>
+      <main>
+        <AuthForm/>
       </main>
     </>
   )
