@@ -23,12 +23,14 @@ function InvoiceForm({
     invoice?.payment_terms ? invoice?.payment_terms : ""
   );
   const [items, setItems] = useState(
-    invoice?.items ? invoice?.items : invoiceItemsInital
+    invoice?.items
+      ? invoice?.items
+      : [{ name: "", qty: "", price: "", total: 0 }]
   );
 
   const discardForm = () => {
     setFormData(invoiceDiscardsInital);
-    setItems(invoiceItemsInital);
+    setItems([{ name: "", qty: "", price: "", total: 0 }]);
     setSelectedOption("next30Days");
   };
 
