@@ -41,7 +41,7 @@ function InvoiceForm({
   };
 
   const handleAddClick = () => {
-    setItems([...items, invoiceItemsInital[0]]);
+    setItems([...items, { name: "", qty: "", price: "", total: 0 }]);
   };
 
   const handleRemoveClick = (index) => {
