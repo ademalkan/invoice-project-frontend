@@ -33,9 +33,12 @@ function AuthForm() {
     setLoading(false); // Loading durumunu false yap
   };
   return (
-    <div className="mx-auto h-screen bg-purple-open  grid place-items-center bg-blue-300">
-      <form onSubmit={handleSubmit} className="grid place-items-center">
-        <h1 className="text-3xl font-bold underline mb-10">Login in</h1>
+    <div className="mx-auto h-screen bg-grey-open  grid place-items-center bg-blue-300">
+      <form
+        onSubmit={handleSubmit}
+        className="grid place-items-center bg-grey text-grey-open p-12 rounded-lg shadow-2xl"
+      >
+        <h1 className="text-3xl font-bold underline mb-10 ">Login in</h1>
         <div class="grid mb-6 md:grid-col">
           <label
             for="last_name"
@@ -43,10 +46,10 @@ function AuthForm() {
           >
             Email
             <input
-              type="text"
+              type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="bg-gray-50 border border-grey text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="John"
               required
             />
@@ -62,7 +65,7 @@ function AuthForm() {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="bg-gray-50 border border-grey text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="John"
               required
             />
@@ -71,7 +74,7 @@ function AuthForm() {
         <div>
           <button
             type="submit"
-            className="bg-gray-50 bg-light border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="bg-gray-50 bg-grey hover:bg-grey-open border text-grey-open hover:text-grey transition-all border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             disabled={loading}
           >
             Login

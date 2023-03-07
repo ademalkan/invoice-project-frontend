@@ -80,7 +80,7 @@ function StatusBar({ invoiceData, setIsModalOpen }) {
         onRequestClose={() => setModalIsOpen(false)}
         contentLabel="Emin misin?"
         className={
-          "w-1/3 m-auto p-12 mt-40 rounded-lg shadow-2xl bg-white z-50"
+          "lg:w-1/3 w-11/12 m-auto p-12 lg:mt-40 mt-60 rounded-lg shadow-2xl bg-white z-50"
         }
       >
         <h2 className="font-bold text-2xl">Confirm Deletion</h2>
