@@ -8,7 +8,6 @@ import FormButtonArea from "./FormButtonArea";
 import {
   invoiceDiscardsInital,
   invoiceInital,
-  invoiceItemsInital,
 } from "@/utils/mocks/invoiceFormInital";
 function InvoiceForm({
   setIsModalOpen,

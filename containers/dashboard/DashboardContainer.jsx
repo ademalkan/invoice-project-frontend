@@ -1,7 +1,6 @@
 import Blank from "@/components/blank/Blank";
 import BlankShow from "@/components/blank/BlankShow";
 import Sidebar from "@/components/Sidebar/Sidebar";
-import React from "react";
 
 function DashboardContainer({ invoiceData, setInvoiceData }) {
   return (
