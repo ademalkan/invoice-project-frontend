@@ -2,17 +2,28 @@ import api from "@/utils/helpers/api";
 import React from "react";
 import { useState } from "react";
 import { FaTrash } from "react-icons/fa";
-function InvoiceForm({ setIsModalOpen }) {
-  const [selectedOption, setSelectedOption] = useState("option1");
-  const [items, setItems] = useState([
-    { name: "", qty: "", price: "", total: 0 },
-  ]);
-  const [formData, setFormData] = useState({
-    street_address_from: "street_address_from",
+function InvoiceForm({
+  setIsModalOpen,
+  setRefresh,
+  refresh,
+  invoice,
+  setInvoiceData,
+}) {
+  console.log(invoice?.invoice_date);
+  const [selectedOption, setSelectedOption] = useState(
+    invoice?.payment_terms ? invoice?.payment_terms : ""
+  );
+  const [items, setItems] = useState(
+    invoice?.items
+      ? invoice?.items
+      : [{ name: "", qty: "", price: "", total: 0 }]
+  );
+  const invoiceInital = {
+    address_from: "street_address_from123",
     city_from: "city_from",
     post_code_from: "post_code_from",
     country_from: "country_from",
-    street_address_to: "street_address_to",
+    address_to: "address_to",
     city_to: "city_to",
     post_code_to: "post_code_to",
     country_to: "country_to",
@@ -20,15 +31,16 @@ function InvoiceForm({ setIsModalOpen }) {
     client_email: "client_email@gmail.com",
     invoice_date: "invoice_date",
     project_description: "project_description",
-  });
+  };
+  const [formData, setFormData] = useState(invoice ? invoice : invoiceInital);
 
   const discardForm = () => {
     setFormData({
-      street_address_from: "",
+      address_from: "",
       city_from: "",
       post_code_from: "",
       country_from: "",
-      street_address_to: "",
+      address_to: "",
       city_to: "",
       post_code_to: "",
       country_to: "",
@@ -38,7 +50,7 @@ function InvoiceForm({ setIsModalOpen }) {
       project_description: "",
     });
     setItems([{ name: "", qty: "", price: "", total: 0 }]);
-    setSelectedOption("option1");
+    setSelectedOption("now");
   };
 
   const handleInputChange = (event) => {
@@ -75,16 +87,20 @@ function InvoiceForm({ setIsModalOpen }) {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await api.post(
-        "http://127.0.0.1:8000/api/inovice/create",
-        {
-          formData,
-          items,
-          selectedOption,
-        }
-      );
+      const create = "http://127.0.0.1:8000/api/inovice/create";
+
+      const update = `http://127.0.0.1:8000/api/inovice/edit/${invoice?.id}`;
+
+      const response = await api.post(invoice ? update : create, {
+        formData,
+        items,
+        selectedOption,
+      });
+
       if (response) {
         console.log("Form gönderildi!");
+        invoice && setInvoiceData(formData);
+        !invoice && setRefresh(!refresh);
         setIsModalOpen(false);
       } else {
         console.error("Form gönderilemedi.");
@@ -95,13 +111,13 @@ function InvoiceForm({ setIsModalOpen }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4 ">
+    <form onSubmit={handleSubmit} className="pb-12 ">
       <div>
         <h6 className="text-purple font-bold mb-4">Bill From</h6>
 
         <div className="grid mb-6 md:grid-col">
           <label
-            htmlFor="street_address_from"
+            htmlFor="address_from"
             className="block  text-sm font-medium text-grey font-bold dark:text-white"
           >
             Street Address
@@ -110,9 +126,9 @@ function InvoiceForm({ setIsModalOpen }) {
               onChange={handleInputChange}
               className="bg-gray-50 border mt-2 border-grey text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="Street Address"
-              name="street_address_from"
-              id="street_address_from"
-              value={formData.street_address_from}
+              name="address_from"
+              id="address_from"
+              value={formData.address_from}
               required
             />
           </label>
@@ -215,7 +231,7 @@ function InvoiceForm({ setIsModalOpen }) {
         </div>
         <div className="grid mb-6 md:grid-col">
           <label
-            htmlFor="street_address_to"
+            htmlFor="address_to"
             className="block  text-sm font-medium text-grey font-bold dark:text-white"
           >
             Street Address
@@ -224,9 +240,9 @@ function InvoiceForm({ setIsModalOpen }) {
               onChange={handleInputChange}
               className="bg-gray-50 border mt-2 border-grey text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="Street Address"
-              name="street_address_to"
-              id="street_address_to"
-              value={formData.street_address_to}
+              name="address_to"
+              id="address_to"
+              value={formData.address_to}
               required
             />
           </label>
@@ -318,11 +334,12 @@ function InvoiceForm({ setIsModalOpen }) {
               name="payment_terms"
               value={selectedOption}
               onChange={handleOptionChange}
+              defaultChecked={selectedOption}
               className="bg-gray-50 border mt-2 text-purple-500 border-grey text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             >
-              <option value="option1">Option 1</option>
-              <option value="option2">Option 2</option>
-              <option value="option3">Option 3</option>
+              <option value="next30Days">Next 30 Days</option>
+              <option value="next15Days">Next 15 Days</option>
+              <option value="now">Now</option>
             </select>
           </div>
         </div>
@@ -347,7 +364,7 @@ function InvoiceForm({ setIsModalOpen }) {
       </div>
       <h6 className="text-grey font-bold mb-4 mt-12">Item List</h6>
 
-      <div className="grid md:grid-cols-4 gap-6 mb-0">
+      <div className="grid grid-cols-4 gap-6 mb-0">
         <div>
           <label
             htmlFor="item_name"
@@ -383,7 +400,7 @@ function InvoiceForm({ setIsModalOpen }) {
       </div>
 
       {items.map((item, index) => (
-        <div className="grid md:grid-cols-4 gap-6 mb-6" key={index}>
+        <div className="grid lg:grid-cols-4 grid-cols-4 gap-6 mb-6" key={index}>
           <div>
             <input
               type="text"
@@ -438,29 +455,47 @@ function InvoiceForm({ setIsModalOpen }) {
           + Add New Item
         </button>
       </div>
-      <div className="flex items-center justify-between">
-        <div>
-          <button
-            className=" px-4 py-3 mr-4 text-grey font-bold"
-            type="button"
-            onClick={() => discardForm()}
-          >
-            Discard
-          </button>
-        </div>
+      <div
+        className={`flex items-center justify-${invoice ? "end" : "between"}`}
+      >
+        {!invoice && (
+          <div>
+            <button
+              className=" px-4 py-3 mr-4 text-grey font-bold"
+              type="button"
+              onClick={() => discardForm()}
+            >
+              Discard
+            </button>
+          </div>
+        )}
+
         <div className="flex items-center justify-end">
-          <button
-            className=" px-4 py-3 mr-4 bg-dark-open text-grey inline-flex items-center justify-center  border border-transparent rounded-full shadow-sm text-base font-bold  hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-            type="button"
-            onClick={() => setIsModalOpen(false)}
-          >
-            Save as Draft
-          </button>
+          {!invoice ? (
+            <button
+              className=" px-4 py-3 mr-4 bg-dark-open text-grey inline-flex items-center justify-center  border border-transparent rounded-full shadow-sm text-base font-bold  hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              type="submit"
+              onClick={() => setIsModalOpen(false)}
+            >
+              Save as Draft
+            </button>
+          ) : (
+            <div>
+              <button
+                className=" px-4 py-3 mr-4 text-grey font-bold"
+                type="button"
+                onClick={() => setIsModalOpen(false)}
+              >
+                Cancel
+              </button>
+            </div>
+          )}
+
           <button
             type="submit"
             className="inline-flex items-center justify-center px-4 py-3 border border-transparent rounded-full shadow-sm text-base font-bold bg-purple text-light hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
           >
-            Save & Send
+            Save{invoice ? " Changes" : " & Send"}
           </button>
         </div>
       </div>

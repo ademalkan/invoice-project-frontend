@@ -21,7 +21,7 @@ function InvoiceDetail({ invoiceData }) {
           <div className="my-2">{invoiceData?.country_from}</div>
         </div>
       </div>
-      <div className="grid mb-6 md:grid-cols-3">
+      <div className="grid mb-6 lg:grid-cols-3 grid-cols-2">
         <div className="flex flex-col justify-between">
           <div>
             <h6 className="text-grey mb-3">Invoice Date</h6>

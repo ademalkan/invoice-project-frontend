@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import { removeToken } from "@/utils/helpers/auth";
 
 function Sidebar() {
   const router = useRouter();
@@ -8,11 +9,16 @@ function Sidebar() {
   const handleClick = () => {
     router.push("/invoice/dashboard");
   };
+
+  function handleLogout() {
+    removeToken();
+    router.push("/");
+  }
   return (
-    <div className="bg-dark-open fixed z-40 flex items-center justify-between flex-col rounded-tr-3xl rounded-br-3xl w-28 h-screen">
+    <div className="bg-dark-open fixed z-40 flex items-center justify-between  lg:rounded-tr-3xl lg:rounded-br-3xl  w-screen lg:w-28 lg:h-screen lg:flex-col">
       <div
         onClick={handleClick}
-        className="bg-purple-open hover:cursor-pointer w-full h-1/6 flex items-center rounded-tr-3xl rounded-br-3xl text-center justify-center"
+        className="bg-purple-open hover:cursor-pointer w-1/4 h-20 lg:w-full lg:h-1/6 flex items-center rounded-tr-3xl rounded-br-3xl text-center justify-center"
       >
         <Image
           src="/starter-code/assets/logo.svg"
@@ -21,8 +27,8 @@ function Sidebar() {
           height={40}
         />
       </div>
-      <div className="w-full h-52 flex flex-col items-center justify-between">
-        <div className="w-full h-1/2 border-b-stroke border-b-2 flex items-center justify-center border-solid border-red-500">
+      <div className="w-full lg:h-52 flex lg:flex-col items-center justify-end  lg:justify-between">
+        <div className="lg:w-full mr-12 lg:mr-0 h-1/2 lg:border-b-stroke lg:border-b-2 flex items-center justify-center border-solid border-red-500">
           <Image
             src="/starter-code/assets/icon-moon.svg"
             alt="Loog"
@@ -31,7 +37,10 @@ function Sidebar() {
             resizemode="cover"
           />
         </div>
-        <div className="w-full  h-1/2 flex items-center rounded-tr-3xl rounded-br-3xl text-center justify-center">
+        <div
+          onClick={handleLogout}
+          className="lg:w-full mr-4 hover:cursor-pointer lg:mr-4  h-1/2 flex items-center rounded-tr-3xl rounded-br-3xl text-center justify-center"
+        >
           <Image
             src="/starter-code/assets/image-avatar.jpg"
             alt="Loog"

@@ -14,8 +14,8 @@ function Items({ items }) {
           <h6 className="text-grey mb-3">Total </h6>
         </div>
       </div>
-      {items?.map((item) => (
-        <div className="flex justify-between p-3">
+      {items?.map((item, index) => (
+        <div className="flex justify-between p-3" key={index}>
           <div>
             <h6 className="font-bold mb-3">{item?.name}</h6>
           </div>
