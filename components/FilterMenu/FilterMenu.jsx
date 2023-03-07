@@ -9,7 +9,6 @@ function FilterMenu({ options, setOptions }) {
     const { name, checked } = event.target;
     setOptions((prevState) => ({ ...prevState, [name]: checked }));
     console.log(options);
-    // Burada filtreleme işlemlerini yapabilirsiniz
   };
 
   useEffect(() => {
@@ -18,9 +17,7 @@ function FilterMenu({ options, setOptions }) {
         setMenuOpen(false);
       }
     };
-
     document.addEventListener("mousedown", handleClickOutside);
-
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
