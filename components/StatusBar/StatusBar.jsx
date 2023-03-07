@@ -3,7 +3,7 @@ import api from "@/utils/helpers/api";
 import { useRouter } from "next/router";
 import Modal from "react-modal";
 
-function StatusBar({ invoiceData }) {
+function StatusBar({ invoiceData, setIsModalOpen }) {
   const router = useRouter();
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [status, setStatus] = useState(invoiceData?.status);
@@ -39,7 +39,7 @@ function StatusBar({ invoiceData }) {
 
   return (
     <div className="w-full shadow-md rounded-md  p-6   flex items-center justify-between">
-      <div className="flex items-center">
+      <div className="w-full lg:w-fit flex items-center justify-between ">
         <h6 className="text-grey">Status</h6>
         <div
           className={`px-6 py-2 ml-4 capitalize rounded-md font-bold ${
@@ -53,8 +53,11 @@ function StatusBar({ invoiceData }) {
           {status}
         </div>
       </div>
-      <div>
-        <button className="bg-light text-grey font-bold py-3 px-6 rounded-3xl">
+      <div className="fixed lg:static bottom-0 bg-light w-screen lg:w-fit p-3 lg:p-0 left-0">
+        <button
+          onClick={() => setIsModalOpen(true)}
+          className="bg-light text-grey font-bold py-3 px-6 rounded-3xl"
+        >
           Edit
         </button>
         <button

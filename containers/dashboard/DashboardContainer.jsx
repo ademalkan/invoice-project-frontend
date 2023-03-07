@@ -3,12 +3,14 @@ import BlankShow from "@/components/blank/BlankShow";
 import Sidebar from "@/components/Sidebar/Sidebar";
 import React from "react";
 
-function DashboardContainer({ invoiceData }) {
+function DashboardContainer({ invoiceData, setInvoiceData }) {
   return (
     <div className="flex relative ">
       <Sidebar />
       {!invoiceData && <Blank />}
-      {invoiceData && <BlankShow invoiceData={invoiceData} />}
+      {invoiceData && (
+        <BlankShow setInvoiceData={setInvoiceData} invoiceData={invoiceData} />
+      )}
     </div>
   );
 }

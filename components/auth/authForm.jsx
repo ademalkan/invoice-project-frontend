@@ -33,7 +33,7 @@ function AuthForm() {
     setLoading(false); // Loading durumunu false yap
   };
   return (
-    <div className="mx-auto h-screen  grid place-items-center bg-blue-300">
+    <div className="mx-auto h-screen bg-purple-open  grid place-items-center bg-blue-300">
       <form onSubmit={handleSubmit} className="grid place-items-center">
         <h1 className="text-3xl font-bold underline mb-10">Login in</h1>
         <div class="grid mb-6 md:grid-col">
@@ -71,7 +71,7 @@ function AuthForm() {
         <div>
           <button
             type="submit"
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="bg-gray-50 bg-light border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             disabled={loading}
           >
             Login

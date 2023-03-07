@@ -1,14 +1,17 @@
 import DashboardContainer from "@/containers/dashboard/DashboardContainer";
 import { useRouter } from "next/router";
+import { useState } from "react";
 
 function InvoicePage({ invoice }) {
   const router = useRouter();
   const { id } = router.query;
-  const invoiceData = invoice.data;
-  console.log(invoiceData);
+  const [invoiceData, setInvoiceData] = useState(invoice.data);
   return (
     <div>
-      <DashboardContainer invoiceData={invoiceData}/>
+      <DashboardContainer
+        setInvoiceData={setInvoiceData}
+        invoiceData={invoiceData}
+      />
     </div>
   );
 }

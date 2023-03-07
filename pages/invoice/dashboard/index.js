@@ -1,26 +1,20 @@
-import React from 'react'
-import { useEffect } from 'react';
-import { useRouter } from 'next/router';
-import { getToken,removeToken } from '@/utils/helpers/auth';
-import DashboardContainer from '@/containers/dashboard/DashboardContainer';
+import React from "react";
+import { useEffect } from "react";
+import { useRouter } from "next/router";
+import { getToken } from "@/utils/helpers/auth";
+import DashboardContainer from "@/containers/dashboard/DashboardContainer";
 function Dashboard() {
   const router = useRouter();
 
   useEffect(() => {
     const token = getToken();
-    console.log(token)
+    console.log(token);
     if (!token) {
-      router.push('/');
+      router.push("/");
     }
   }, [router]);
 
-  function handleLogout() {
-    removeToken()
-    router.push('/');
-  }
-  return (
-    <DashboardContainer/>
-  )
+  return <DashboardContainer />;
 }
 
-export default Dashboard
+export default Dashboard;

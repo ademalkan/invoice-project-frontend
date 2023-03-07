@@ -3,7 +3,7 @@ import React from "react";
 
 function NoContent() {
   return (
-    <div className="p-20  flex flex-col items-center justify-center">
+    <div className="lg:p-20 pt-20  flex flex-col items-center justify-center">
       <Image
         src="/starter-code/assets/illustration-empty.svg"
         alt="Loog"
