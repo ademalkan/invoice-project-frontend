@@ -18,14 +18,14 @@ function Blank() {
 
   useEffect(() => {
     try {
-      const response = fetchInvoices();
+      const response = fetchInvoices(options);
       response
         .then((result) => setInvoices(result?.data))
         .catch((error) => console.error("Bir hata oluştu:", error));
     } catch (error) {
       console.error("Bir hata oluştu:", error);
     }
-  }, [refresh]);
+  }, [refresh, options]);
   return (
     <div className="w-screen h-screen">
       <div className="w-3/4  m-auto mt-28  lg:mt-20 ">

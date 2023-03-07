@@ -21,8 +21,8 @@ function Items({ items }) {
           </div>
           <div className="flex justify-between text-center w-3/6">
             <h6 className="text-grey mb-3">{item?.qty}</h6>
-            <h6 className="font-bold text-grey mb-3">£ {item?.qty}</h6>
-            <h6 className="font-bold mb-3">£ {item?.total}</h6>
+            <h6 className="font-bold text-grey mb-3">£ {item?.price}</h6>
+            <h6 className="font-bold mb-3">£ {item?.total?.toFixed(2)}</h6>
           </div>
         </div>
       ))}
